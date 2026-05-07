@@ -8,6 +8,7 @@ import { Silhouette, SilhouetteSchema } from "./silhouette/Silhouette";
 import { TalkBranded } from "./talk/branded/TalkBranded";
 import { Talk } from "./talk/Talk";
 import { TalkBrandedSchema, TalkSchema } from "./talk/talks.types";
+import { DevQuest, DevQuestSchema } from "./devquest/DevQuest";
 
 const today = new Date();
 const startingDate = today;
