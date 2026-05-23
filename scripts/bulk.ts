@@ -6,7 +6,6 @@ const { sessions } = program;
 
 import { bundle } from "@remotion/bundler";
 import { renderMedia, selectComposition } from "@remotion/renderer";
-import { staticFile } from "remotion";
 
 const compositionId = "DevQuest"; // l'id de ta <Composition>
 
@@ -43,9 +42,29 @@ const bundleLocation = await bundle({
   entryPoint: "../remotion/index.tsx",
 });
 
+function stripEmojis(s: string): string {
+  return s
+    .replace(/\p{Extended_Pictographic}/gu, "")
+    .replace(/[\u{1F3FB}-\u{1F3FF}]/gu, "")
+    .replace(/\u200D/gu, "")
+    .replace(/[\uFE00-\uFE0F]/gu, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function slugify(s: string): string {
+  return s
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
 // 2. Itérer séquentiellement (recommandé)
 for (const session of sessions) {
   if (session.proposal) {
+    const cleanTitle = stripEmojis(session.title);
     const entry = {
       title: session.title,
       speakers: session.proposal!.speakers.map((s) => {
@@ -74,7 +93,7 @@ for (const session of sessions) {
       composition,
       serveUrl: bundleLocation,
       codec: "h264",
-      outputLocation: `out/${date}-${entry.track}.mp4`,
+      outputLocation: `out/${slugify(cleanTitle)}.mp4`,
       inputProps: entry,
       chromiumOptions: {
         disableWebSecurity: true, // ✅ désactive CORS/ORB
