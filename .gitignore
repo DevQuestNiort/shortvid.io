@@ -41,5 +41,5 @@ next-env.d.ts
 .idea
 .vscode
 
-scripts/out
+scripts/videos
 public/avatars

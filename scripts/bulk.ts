@@ -1,8 +1,59 @@
-import { mkdir } from "node:fs/promises";
 import { existsSync } from "node:fs";
+import { mkdir } from "node:fs/promises";
 import program from "./devquest-2026-schedule.json";
 
 const { sessions } = program;
+
+sessions.push({
+  id: "keynote",
+  title: "Keynote",
+  proposal: {
+    speakers: [
+      {
+        id: "keynoteur",
+        picture: "../public/branding/front-end.png",
+        name: "",
+      },
+    ],
+    categories: [],
+  },
+  start: "2026-06-11T09:00:00.000Z",
+  track: "Forge",
+});
+
+sessions.push({
+  id: "tremplin1",
+  title: "Tremplin 1",
+  proposal: {
+    speakers: [
+      {
+        id: "tremplin",
+        picture: "../public/branding/front-end.png",
+        name: "",
+      },
+    ],
+    categories: [],
+  },
+  start: "2026-06-11T13:30:00.000Z",
+  track: "Observatoire",
+});
+
+sessions.push({
+  id: "tremplin2",
+  title: "Tremplin 2",
+  proposal: {
+    speakers: [
+      {
+        id: "tremplin",
+        picture: "../public/branding/front-end.png",
+        name: "",
+      },
+    ],
+    categories: [],
+  },
+  start: "2026-06-12T13:30:00.000Z",
+  track: "Observatoire",
+});
 
 import { bundle } from "@remotion/bundler";
 import { renderMedia, selectComposition } from "@remotion/renderer";
@@ -85,15 +136,11 @@ for (const session of sessions) {
       inputProps: entry,
     });
 
-    const d = new Date(new Date(entry.start).getTime() - 2 * 60 * 60 * 1000);
-    const pad = (n: number) => String(n).padStart(2, "0");
-    const date = `${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}`;
-
     await renderMedia({
       composition,
       serveUrl: bundleLocation,
       codec: "h264",
-      outputLocation: `out/${slugify(cleanTitle)}.mp4`,
+      outputLocation: `videos/${slugify(cleanTitle)}.mp4`,
       inputProps: entry,
       chromiumOptions: {
         disableWebSecurity: true, // ✅ désactive CORS/ORB
