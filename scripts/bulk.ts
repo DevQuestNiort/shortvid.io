@@ -22,14 +22,17 @@ sessions.push({
 });
 
 sessions.push({
-  id: "tremplin1",
-  title: "Tremplin 1",
+  id: slugify(
+    "Ma Quête du Leader Technique : 10 conseils d'expert·es pour réussir et faire réussir",
+  ),
+  title:
+    "Ma Quête du Leader Technique : 10 conseils d'expert·es pour réussir et faire réussir",
   proposal: {
     speakers: [
       {
-        id: "tremplin",
+        id: slugify("Dimitri Lahaye"),
         picture: "../public/branding/front-end.png",
-        name: "",
+        name: "Dimitri Lahaye",
       },
     ],
     categories: [],
@@ -39,14 +42,14 @@ sessions.push({
 });
 
 sessions.push({
-  id: "tremplin2",
-  title: "Tremplin 2",
+  id: slugify("Le code change, la doc suit : trois skills en relais"),
+  title: "Le code change, la doc suit : trois skills en relais",
   proposal: {
     speakers: [
       {
-        id: "tremplin",
+        id: slugify("Emmanuel Sandorfi"),
         picture: "../public/branding/front-end.png",
-        name: "",
+        name: "Emmanuel Sandorfi",
       },
     ],
     categories: [],
