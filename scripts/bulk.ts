@@ -23,10 +23,10 @@ sessions.push({
 
 sessions.push({
   id: slugify(
-    "Ma Quête du Leader Technique : 10 conseils d'expert·es pour réussir et faire réussir",
+    "Ma Quête du Lead : 10 conseils d'expert·es pour réussir et faire réussir",
   ),
   title:
-    "Ma Quête du Leader Technique : 10 conseils d'expert·es pour réussir et faire réussir",
+    "Ma Quête du Lead : 10 conseils d'expert·es pour réussir et faire réussir",
   proposal: {
     speakers: [
       {
